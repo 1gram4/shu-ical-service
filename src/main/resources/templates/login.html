@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<h1>日历工具</h1>
+<div>账号：<input id="userName" type="text"/></div>
+<div>密码：<input id="passWord" type="password"/></div>
+<div><button id="login" >登录</button></div>
+</body>
+<script>
+    $(document).ready(function () {
+        $("#login").click(function () {
+            var user = {
+                userName:$("#userName").val(),
+                passWord:$("#passWord").val()
+            }
+            login(user)
+        })
+    })
+    function login(user) {
+        $.ajax({
+            type: "POST",
+            url: "/api/v1/login",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(user),
+            dataType: "json",
+            async: false,
+            success: function (message) {
+                if (message.status===0) {
+                    window.location.href = '/indexPage'
+                }
+                else {
+                    $(".alert_error").text(message.result)
+                    $('.alert_error').delay(2000).hide(0)
+
+                }
+            },
+            error: function (message) {
+                $(".alert_error").text("提交数据失败")
+                $('.alert_error').delay(2000).hide(0)
+            }
+        });
+    }
+</script>
+</html>

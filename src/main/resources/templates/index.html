@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <title>首页</title>
+</head>
+<body>
+<button id="generateCal">生成日历</button>
+</body>
+<script>
+    $(document).ready(function () {
+        $("#generateCal").click(function () {
+            $.ajax({
+                url: url,
+                success: success,
+            });
+        })
+    })
+</script>
+</html>
