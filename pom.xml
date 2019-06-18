@@ -65,6 +65,13 @@
             <version>1.18.8</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mnode.ical4j/ical4j -->
+        <dependency>
+            <groupId>org.mnode.ical4j</groupId>
+            <artifactId>ical4j</artifactId>
+            <version>1.0.5.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

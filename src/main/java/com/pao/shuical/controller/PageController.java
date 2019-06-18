@@ -14,4 +14,6 @@ public class PageController {
     public String indexPage(){
         return"index";
     }
+    @RequestMapping(value = "/messagePage",method = RequestMethod.GET)
+    public String messagePage(){return "message";}
 }

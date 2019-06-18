@@ -6,11 +6,9 @@ import com.pao.shuical.util.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import java.sql.SQLOutput;
 
 @RestController
 @RequestMapping(value = "/api/v1")
@@ -31,6 +29,13 @@ public class UserController {
             commonResult.result = "登入成功";
             httpSession.setAttribute("user",user);
         }
+        return commonResult;
+    }
+    @RequestMapping(value = "/generateCourseTable")
+    public CommonResult generateCourseTable(HttpSession httpSession){
+        User user = (User)httpSession.getAttribute("user");
+        System.out.println(userService.findCourses(user.getUserName()));
+        commonResult.status = 0;
         return commonResult;
     }
 }

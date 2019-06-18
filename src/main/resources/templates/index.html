@@ -12,8 +12,10 @@
     $(document).ready(function () {
         $("#generateCal").click(function () {
             $.ajax({
-                url: url,
-                success: success,
+                url: 'api/v1/generateCourseTable',
+                success: function (result) {
+                    alert(result)
+                },
             });
         })
     })
