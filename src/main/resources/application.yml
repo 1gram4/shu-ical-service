@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/shuical?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/shuical?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: Zz199701
   #thymelea模板配置
@@ -34,7 +34,5 @@ spring:
   mvc:
     ##静态资源访问路径
     static-path-pattern: /static/**
-term_start_date:
-  year: 2019
-  month: 3
-  day: 25
+term_start_date: "2019/3/25"
+icspath: "F:\\ics\\"

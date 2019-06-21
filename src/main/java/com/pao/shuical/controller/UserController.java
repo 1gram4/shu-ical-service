@@ -3,6 +3,7 @@ package com.pao.shuical.controller;
 import com.pao.shuical.domain.User;
 import com.pao.shuical.service.UserService;
 import com.pao.shuical.util.CommonResult;
+import com.pao.shuical.util.CoursesToIcs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class UserController {
     @RequestMapping(value = "/generateCourseTable")
     public CommonResult generateCourseTable(HttpSession httpSession){
         User user = (User)httpSession.getAttribute("user");
-        System.out.println(userService.findCourses(user.getUserName()));
+        CoursesToIcs.coursesToIcs(user.getUserName(),userService.findCourses(user.getUserName()));
         commonResult.status = 0;
         return commonResult;
     }
