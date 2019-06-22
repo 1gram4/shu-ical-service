@@ -7,6 +7,8 @@ import net.fortuna.ical4j.model.component.VEvent;
 import net.fortuna.ical4j.model.component.VTimeZone;
 import net.fortuna.ical4j.model.property.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -16,12 +18,19 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Component
 public class CoursesToIcs {
     //从配置文件读取配置
+    private static String termStartDateString;
+    private static String icsPath;
+    @Value("${ics_path}")
+    public void setIcsPath(String icsPath) {
+        CoursesToIcs.icsPath = icsPath;
+    }
     @Value("${term_start_date}")
-    public static String termStartDateString;
-    @Value("${icspath}")
-    public static String icsPath;
+    public void setTermStartDateString(String termStartDateString) {
+        CoursesToIcs.termStartDateString = termStartDateString;
+    }
 
     //读入course列表，生成ics文件
     public static Boolean coursesToIcs(String icsName,List<Course> courses){
@@ -30,7 +39,7 @@ public class CoursesToIcs {
             DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             //每天的上课时刻表,每天8:00上课
             int course_minutes[] = {0, 55, 120, 175, 250, 295, 370, 425, 480, 535, 600, 655, 710};
-            long termStartTime = format.parse("2019/3/25").getTime();
+            long termStartTime = format.parse(termStartDateString).getTime();
             // 创建一个时区（TimeZone）
             TimeZoneRegistry registry = TimeZoneRegistryFactory.getInstance().createRegistry();
             TimeZone timezone = registry.getTimeZone("Asia/Shanghai");
@@ -131,7 +140,7 @@ public class CoursesToIcs {
             // 验证
             calendar.validate();
             //写出
-            FileOutputStream fout = new FileOutputStream("F:\\ics\\"+icsName+".ics");
+            FileOutputStream fout = new FileOutputStream(icsPath+icsName+".ics");
             CalendarOutputter outputter = new CalendarOutputter();
             outputter.output(calendar, fout);
         }

@@ -16,4 +16,12 @@ public class PageController {
     }
     @RequestMapping(value = "/messagePage",method = RequestMethod.GET)
     public String messagePage(){return "message";}
+    @RequestMapping(value = "/grabCoursePage",method = RequestMethod.GET)
+    public String grabCoursePage(){
+        return "grabCourse";
+    }
+    @RequestMapping(value = "/contactAuthorPage",method = RequestMethod.GET)
+    public String contactAuthorPage(){
+        return "contactAuthor";
+    }
 }

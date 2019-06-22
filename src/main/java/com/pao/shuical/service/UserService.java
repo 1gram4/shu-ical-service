@@ -8,11 +8,7 @@ import okhttp3.OkHttpClient;
 import java.util.List;
 
 public interface UserService {
-    public static LocalCookieJar localCookieJar = new LocalCookieJar();
-    public static OkHttpClient client = new OkHttpClient().newBuilder()
-            // .followRedirects(false)    //禁止自动重定向！！！
-            .cookieJar(localCookieJar)   //为OkHttp设置自动携带Cookie的功能
-            .build();
     public User login(String userName,String PassWord);
-    public List<Course> findCourses(String userName);
+    public Boolean logout(User user);
+    public List<Course> findCourses(User user);
 }
